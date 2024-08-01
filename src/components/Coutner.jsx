@@ -1,7 +1,7 @@
-import React from "react";
 import { useState } from "react";
+import { connect } from "react-redux";
 
-export default function Coutner() {
+function Coutner({ count }) {
   const [count, setCount] = useState(0);
   return (
     <div className="max-w-md mx-auto mt-10 space-y-5">
@@ -29,3 +29,11 @@ export default function Coutner() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    count: state.value,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchProps)(Coutner);
