@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { connect } from "react-redux";
+import { increment, decrement } from "../redux/counter/actions";
 
-function Coutner({ count }) {
+function Coutner({ counts, increment, decrement }) {
   const [count, setCount] = useState(0);
   return (
     <div className="max-w-md mx-auto mt-10 space-y-5">
@@ -32,7 +33,14 @@ function Coutner({ count }) {
 
 const mapStateToProps = (state) => {
   return {
-    count: state.value,
+    counts: state.value,
+  };
+};
+
+const mapDispatchProps = (dispatch) => {
+  return {
+    increment: (value) => dispatch(increment(value)),
+    decrement: (value) => dispatch(decrement(value)),
   };
 };
 
