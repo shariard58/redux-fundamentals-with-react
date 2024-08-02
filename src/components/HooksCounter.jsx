@@ -4,7 +4,7 @@ import { increment, decrement } from "../redux/counter/actions";
 
 export default function HooksCoutner() {
   // getting the state value ..
-  const count = useSelector((state) => state.value);
+  const count = useSelector((state) => state.counter.value);
   const dispatch = useDispatch();
 
   const incrementHandler = (value) => {
