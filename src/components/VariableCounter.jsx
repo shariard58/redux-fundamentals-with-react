@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { connect } from "react-redux";
 import { increment, decrement } from "../redux/counter/actions";
+import {
+  increment as dynamicIncrement,
+  decrement as dynamicDecrement,
+} from "../redux/dynamicCounter/actions";
 
 function VariableCoutner({ counts, increment, decrement }) {
   return (
@@ -26,17 +30,21 @@ function VariableCoutner({ counts, increment, decrement }) {
   );
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    counts: state.value,
+    counts: ownProps.dynamic ? state.dynamicCounter.value : state.counter.value,
   };
 };
 
-const mapDispatchProps = (dispatch) => {
+const mapDispatchProps = (dispatch, ownProps) => {
   return {
-    increment: (value) => dispatch(increment(value)),
-    decrement: (value) => dispatch(decrement(value)),
+    increment: ownProps.dynamic
+      ? () => dispatch(dynamicIncrement(5))
+      : (value) => dispatch(increment(value)),
+    decrement: ownProps.dynamic
+      ? () => dispatch(dynamicDecrement(5))
+      : (value) => dispatch(decrement(value)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchProps)(Coutner);
+export default connect(mapStateToProps, mapDispatchProps)(VariableCoutner);
