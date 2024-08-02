@@ -1,4 +1,4 @@
-import { DINCREMENT, DDINCREMENT } from "./actionType";
+import { DINCREMENT, DDECREMENT } from "./actionTypes";
 
 const initialState = {
   value: 0,
@@ -12,7 +12,7 @@ const dynamicCounterReducer = (state = initialState, action) => {
         value: state.value + action.payload.value,
       };
 
-    case DDINCREMENT:
+    case DDECREMENT:
       return {
         ...state,
         value: state.value - action.payload.value,
