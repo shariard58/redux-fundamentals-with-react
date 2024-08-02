@@ -1,6 +1,7 @@
 import { Provider } from "react-redux";
 import Coutner from "./components/Coutner";
 import HooksCounter from "./components/HooksCounter";
+import DynamicHooksCoutner from "./components/DynamicHooksCounter";
 import store from "./redux/store";
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Provider store={store}>
           {/* <Coutner /> */}
           <HooksCounter />
+          <DynamicHooksCoutner />
         </Provider>
       </div>
     </div>
